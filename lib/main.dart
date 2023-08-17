@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:velocitodriver/Screens/startpage.dart';
+import 'package:velocitodriver/services/Driver/VechicleDetails.dart';
 import 'package:velocitodriver/services/Driver/driverdetails.dart';
 
 import 'Screens/splash.dart';
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'Velo Drive',
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -37,7 +38,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const DriverDetails(),
+      home: VehicleDetails(),
     );
   }
 }
