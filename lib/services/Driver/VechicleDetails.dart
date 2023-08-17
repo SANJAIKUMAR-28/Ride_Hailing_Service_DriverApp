@@ -137,7 +137,146 @@ class _VehicleDetailsState extends State<VehicleDetails> {
                         ],
                       ),
                     )),
-              )
+              ),
+              SizedBox(height: 15,),
+              Container(
+                width: MediaQuery.of(context).size.width,
+                height: 50,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5)
+                ),
+                child: DottedBorder(
+                    borderType: BorderType.RRect,
+                    radius: Radius.circular(5),
+                    color: Color.fromRGBO(153, 153, 153, 1),
+                    strokeWidth: 1,
+                    child: Padding(
+                      padding: const EdgeInsets.all(3.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                              children:[
+                                Icon(Icons.check_circle,color: Color.fromRGBO(153, 153, 153, 1),),
+                                SizedBox(width: 10,),
+                                Text('Registration Certificate',style: TextStyle(fontFamily: 'Arimo',color: Colors.grey),),
+                              ]
+                          ),
+                          SizedBox(
+                            width:100,
+                            child: Material(
+                              elevation: 2,
+                              borderRadius: BorderRadius.circular(10),
+                              color: Color.fromRGBO(255, 51, 51, 0.9),
+                              child: MaterialButton(
+                                padding: EdgeInsets.fromLTRB(5, 10, 5, 10),
+                                minWidth: MediaQuery.of(context).size.width,
+                                onPressed: () async {
+
+                                },
+                                child:  Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(Icons.file_upload_outlined,color: Colors.white,size: 20,),
+                                    SizedBox(width: 5,),
+                                    Text(
+                                      "Upload",
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                          fontSize: 13,
+                                          fontFamily: 'Arimo',
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    )),
+              ),
+              SizedBox(height: 15,),
+              Container(
+                width: MediaQuery.of(context).size.width,
+                height: 50,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5)
+                ),
+                child: DottedBorder(
+                    borderType: BorderType.RRect,
+                    radius: Radius.circular(5),
+                    color: Color.fromRGBO(153, 153, 153, 1),
+                    strokeWidth: 1,
+                    child: Padding(
+                      padding: const EdgeInsets.all(3.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                              children:[
+                                Icon(Icons.check_circle,color: Color.fromRGBO(153, 153, 153, 1),),
+                                SizedBox(width: 10,),
+                                Text('MOT Certificate',style: TextStyle(fontFamily: 'Arimo',color: Colors.grey),),
+                              ]
+                          ),
+                          SizedBox(
+                            width:100,
+                            child: Material(
+                              elevation: 2,
+                              borderRadius: BorderRadius.circular(10),
+                              color: Color.fromRGBO(255, 51, 51, 0.9),
+                              child: MaterialButton(
+                                padding: EdgeInsets.fromLTRB(5, 10, 5, 10),
+                                minWidth: MediaQuery.of(context).size.width,
+                                onPressed: () async {
+
+                                },
+                                child:  Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(Icons.file_upload_outlined,color: Colors.white,size: 20,),
+                                    SizedBox(width: 5,),
+                                    Text(
+                                      "Upload",
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                          fontSize: 13,
+                                          fontFamily: 'Arimo',
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    )),
+              ),
+          SizedBox(height: 30,),
+          Material(
+            borderRadius: BorderRadius.circular(10),
+            color: Color.fromRGBO(255, 51, 51, 0.9),
+            child: MaterialButton(
+              padding: EdgeInsets.fromLTRB(20, 15, 20, 15),
+              minWidth: MediaQuery.of(context).size.width,
+              onPressed: () async {
+
+              },
+              child: Text(
+                "Save & Continue",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    fontSize: 17,
+                    fontFamily: 'Arimo',
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold),
+              ),
+            ),
+          ),
             ],
           ),
         ),
