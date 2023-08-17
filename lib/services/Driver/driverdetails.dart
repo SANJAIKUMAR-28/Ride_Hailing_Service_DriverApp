@@ -84,31 +84,17 @@ class _DriverDetailsState extends State<DriverDetails> {
 
     );
     return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(title:
-      Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children:const [
-            SizedBox(height: 5,),
-            Row(
-              children: [
-                Icon(Icons.arrow_back_sharp,color: Colors.red,size: 40,),
-                SizedBox(
-                  width: 75,
-                ),
-                Text('Driver Details',style: TextStyle(fontSize: 25,fontFamily: 'Arimo',fontWeight: FontWeight.bold,color: Colors.red),textAlign: TextAlign.start,),
-              ],
-            ),
-            SizedBox(height: 2,),
-          ]
-      ),
-        centerTitle: false,
-        elevation: 0.0,
-        backgroundColor: Colors.white70,
-        automaticallyImplyLeading: false,
-        toolbarHeight: 70,
-        shadowColor: Colors.white,
+      resizeToAvoidBottomInset: false,
+      appBar: AppBar(
+        title: const Text(
+          'Driver details',
+          style: TextStyle(fontFamily: 'Arimo', fontWeight: FontWeight.bold),
+        ),
+        centerTitle: true,
+        toolbarHeight: 50,
+        shadowColor: Colors.transparent,
+        surfaceTintColor: Colors.transparent,
+        elevation: 0,
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.only(left: 15,right: 15),
