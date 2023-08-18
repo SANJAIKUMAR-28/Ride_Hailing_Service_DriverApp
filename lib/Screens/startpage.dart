@@ -8,42 +8,42 @@ class StartPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final loginButton = Material(
-      elevation: 2.0,
-      borderRadius: BorderRadius.circular(5),
+    final loginButton =  Material(
+      borderRadius: BorderRadius.circular(10),
       color: Color.fromRGBO(255, 51, 51, 0.9),
       child: MaterialButton(
-        padding: EdgeInsets.fromLTRB(10,15,10,15),
+        padding: EdgeInsets.fromLTRB(20, 15, 20, 15),
         minWidth: MediaQuery.of(context).size.width,
-        splashColor: Colors.black.withOpacity(0.2),
-        onPressed:(){
-
-
+        onPressed: () async {
           Navigator.push(context, MaterialPageRoute(builder: (context)=> DriverDetails()));
-
-        } ,
-        child: Text("Continue >>",textAlign: TextAlign.center,
-          style:TextStyle(fontSize: 20,fontFamily:'Arimo',color: Colors.white,fontWeight: FontWeight.w700) ,
+        },
+        child: Text(
+          "Save & Continue",
+          textAlign: TextAlign.center,
+          style: TextStyle(
+              fontSize: 17,
+              fontFamily: 'Arimo',
+              color: Colors.white,
+              fontWeight: FontWeight.bold),
         ),
       ),
-
     );
     return Scaffold(
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.only(left: 15,right: 15),
+      body: Padding(
+        padding: const EdgeInsets.only(bottom:20,left: 13,right: 13),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            SizedBox(height: 100,),
-            Text('For Getting Approval',style: TextStyle(fontSize: 25,fontFamily: 'Arimo',fontWeight: FontWeight.w400,color: Colors.black),textAlign: TextAlign.start,),
+            SizedBox(height: 60,),
+            Text('For Getting Approval',style: TextStyle(fontSize: 21,fontFamily: 'Arimo',fontWeight: FontWeight.w400,color: Colors.black),textAlign: TextAlign.start,),
             SizedBox(height: 10),
-            Text('We kindly request you to provide us with some essential information to proceed with your admin approval.',style: TextStyle(fontSize: 20,fontFamily: 'Arimo',fontWeight: FontWeight.w300,color: Colors.black),textAlign: TextAlign.start,),
+            Text('We kindly request you to provide us with some essential information to proceed with your admin approval.',style: TextStyle(fontSize: 15,fontFamily: 'Arimo',fontWeight: FontWeight.w300,color: Colors.black),textAlign: TextAlign.start,),
             SizedBox(
               height: 18,
             ),
             Material(
-              borderRadius: BorderRadius.circular(15),
+              borderRadius: BorderRadius.circular(13),
               color: Color.fromRGBO(245, 245, 245, 1),
               child: Padding(
                 padding: EdgeInsets.all(10),
@@ -62,7 +62,7 @@ class StartPage extends StatelessWidget {
                           onPressed: () {},
                           elevation: 2.0,
                           fillColor: Colors.redAccent,
-                          child: Text('1',style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
+                          child: Text('1',style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold, color: Colors.white),
                           ),
                           padding: EdgeInsets.all(10.0),
                           shape: CircleBorder(),
@@ -79,7 +79,7 @@ class StartPage extends StatelessWidget {
                           onPressed: () {},
                           elevation: 2.0,
                           fillColor: Colors.redAccent,
-                          child: Text('2',style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Colors.white),
+                          child: Text('2',style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold, color: Colors.white),
                           ),
                           padding: EdgeInsets.all(10.0),
                           shape: CircleBorder(),
@@ -96,7 +96,7 @@ class StartPage extends StatelessWidget {
                           onPressed: () {},
                           elevation: 2.0,
                           fillColor: Colors.redAccent,
-                          child: Text('3',style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Colors.white),
+                          child: Text('3',style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold, color: Colors.white),
                           ),
                           padding: EdgeInsets.all(10.0),
                           shape: CircleBorder(),
@@ -115,7 +115,7 @@ class StartPage extends StatelessWidget {
                           },
                           elevation: 2.0,
                           fillColor: Colors.redAccent,
-                          child: Text('4',style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Colors.white),
+                          child: Text('4',style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold, color: Colors.white),
                           ),
                           padding: EdgeInsets.all(10.0),
                           shape: CircleBorder(),
@@ -131,39 +131,39 @@ class StartPage extends StatelessWidget {
                         children: [
                           Text(
                             'Verified Phone Number',
-                            style: TextStyle(fontSize: 21, fontFamily: 'Arimo', fontWeight: FontWeight.w600, color: Colors.black),
+                            style: TextStyle(fontSize: 18, fontFamily: 'Arimo', fontWeight: FontWeight.w600, color: Colors.black),
                             textAlign: TextAlign.start,
                           ),
                           Text(
                             'To proceed, please provide a valid & verified phone number for communication purposes.',
-                            style: TextStyle(fontSize: 15, fontFamily: 'Arimo', fontWeight: FontWeight.w100, color: Colors.black),
+                            style: TextStyle(fontSize: 13, fontFamily: 'Arimo', fontWeight: FontWeight.w100, color: Colors.black),
                           ),
                           SizedBox(
-                            height: 15,
+                            height: 13,
                           ),
                           Text(
                             'Email',
-                            style: TextStyle(fontSize: 21, fontFamily: 'Arimo', fontWeight: FontWeight.w600, color: Colors.black),
+                            style: TextStyle(fontSize: 18, fontFamily: 'Arimo', fontWeight: FontWeight.w600, color: Colors.black),
                             textAlign: TextAlign.start,
                           ),
                           Text(
                             'We require a valid email address to keep you updated on important notifications.',
-                            style: TextStyle(fontSize: 15, fontFamily: 'Arimo', fontWeight: FontWeight.w100, color: Colors.black),
+                            style: TextStyle(fontSize: 13, fontFamily: 'Arimo', fontWeight: FontWeight.w100, color: Colors.black),
                           ),
                           SizedBox(
-                            height: 15,
+                            height: 13,
                           ),
                           Text(
                             'Driver License',
-                            style: TextStyle(fontSize: 21, fontFamily: 'Arimo', fontWeight: FontWeight.w600, color: Colors.black),
+                            style: TextStyle(fontSize: 18, fontFamily: 'Arimo', fontWeight: FontWeight.w600, color: Colors.black),
                             textAlign: TextAlign.start,
                           ),
                           Text(
                             'Kindly enter your license number, ensuring its accuracy for verification purpose.',
-                            style: TextStyle(fontSize: 15, fontFamily: 'Arimo', fontWeight: FontWeight.w100, color: Colors.black),
+                            style: TextStyle(fontSize: 13, fontFamily: 'Arimo', fontWeight: FontWeight.w100, color: Colors.black),
                           ),
                           SizedBox(
-                            height: 15,
+                            height: 13,
                           ),
                           Text(
                             'Vehicle',
@@ -172,7 +172,7 @@ class StartPage extends StatelessWidget {
                           ),
                           Text(
                             'Please provide details about your vehicle. kindly upload the necessary documentation.',
-                            style: TextStyle(fontSize: 15, fontFamily: 'Arimo', fontWeight: FontWeight.w100, color: Colors.black),
+                            style: TextStyle(fontSize: 13, fontFamily: 'Arimo', fontWeight: FontWeight.w100, color: Colors.black),
                           ),
                         ],
                       ),
@@ -182,7 +182,7 @@ class StartPage extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: 80),
+            SizedBox(height: 50),
             loginButton,
 
           ],
