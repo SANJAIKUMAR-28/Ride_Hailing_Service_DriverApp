@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:dotted_border/dotted_border.dart';
-
+import 'package:flutter_document_picker/flutter_document_picker.dart';
+import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
+import 'dart:io';
+import 'dart:math';
 class VehicleDetails extends StatefulWidget {
   const VehicleDetails({super.key});
 
@@ -9,6 +12,8 @@ class VehicleDetails extends StatefulWidget {
 }
 
 class _VehicleDetailsState extends State<VehicleDetails> {
+  String name = "Prithvi";
+  String IC ='0';
   @override
   Widget build(BuildContext context) {
     
@@ -98,11 +103,13 @@ class _VehicleDetailsState extends State<VehicleDetails> {
                         children: [
                           Row(
                         children:[
-                            Icon(Icons.check_circle,color: Color.fromRGBO(153, 153, 153, 1),),
+                          (IC=='0')?
+                            Icon(Icons.check_circle,color: Color.fromRGBO(153, 153, 153, 1),):Icon(Icons.check_circle,color: Color.fromRGBO(255, 51, 51, 0.9),),
                           SizedBox(width: 10,),
                           Text('Insurace Certificate',style: TextStyle(fontFamily: 'Arimo',color: Colors.grey),),
                           ]
                           ),
+                          (IC=='0')?
                           SizedBox(
                             width:100,
                             child: Material(
@@ -113,7 +120,10 @@ class _VehicleDetailsState extends State<VehicleDetails> {
                                 padding: EdgeInsets.fromLTRB(5, 10, 5, 10),
                                 minWidth: MediaQuery.of(context).size.width,
                                 onPressed: () async {
-
+                                  final path = await FlutterDocumentPicker.openDocument();
+                                  print(path);
+                                  File file = File(path!);
+                                  firebase_storage.UploadTask? task = await uploadFile(file,IC);
                                 },
                                 child:  Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
@@ -122,6 +132,38 @@ class _VehicleDetailsState extends State<VehicleDetails> {
                                     SizedBox(width: 5,),
                                     Text(
                                       "Upload",
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                          fontSize: 13,
+                                          fontFamily: 'Arimo',
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ):SizedBox(
+                            width:100,
+                            child: Material(
+                              elevation: 2,
+                              borderRadius: BorderRadius.circular(10),
+                              color: Color.fromRGBO(153, 153, 153, 0.9),
+                              child: MaterialButton(
+                                padding: EdgeInsets.fromLTRB(5, 10, 5, 10),
+                                minWidth: MediaQuery.of(context).size.width,
+                                onPressed: () async {
+                                 setState(() {
+                                   IC='0';
+                                 });
+                                },
+                                child:  Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(Icons.cancel_outlined,color: Colors.white,size: 20,),
+                                    SizedBox(width: 5,),
+                                    Text(
+                                      "Clear",
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
                                           fontSize: 13,
@@ -282,5 +324,35 @@ class _VehicleDetailsState extends State<VehicleDetails> {
         ),
       ),
     );
+  }
+  Future<firebase_storage.UploadTask?> uploadFile(File file,String sts) async {
+    // ignore: unnecessary_null_comparison
+    if (file == null) {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(const SnackBar(
+        content: Text("Unable to upload"),
+      ));
+      return null;
+    }
+
+    firebase_storage.UploadTask uploadTask;
+
+    // Create a Reference to the file
+    firebase_storage.Reference ref = firebase_storage.FirebaseStorage.instance
+        .ref()
+        .child('Insurance Certificates')
+        .child('/${name}-INSURANCE.pdf');
+
+    final metadata = firebase_storage.SettableMetadata(
+        contentType: 'file/pdf',
+        customMetadata: {'picked-file-path': file.path});
+    print("Uploading..!");
+
+    uploadTask = ref.putData(await file.readAsBytes(), metadata);
+    setState(() {
+      IC= '1';
+    });
+    print("done..!");
+    return Future.value(uploadTask);
   }
 }
