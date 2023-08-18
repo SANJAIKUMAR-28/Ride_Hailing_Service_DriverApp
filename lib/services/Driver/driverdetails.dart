@@ -54,7 +54,7 @@ class _DriverDetailsState extends State<DriverDetails> {
         minWidth: MediaQuery.of(context).size.width,
         splashColor: Colors.black.withOpacity(0.2),
         onPressed:(){
-          Navigator.push(context, MaterialPageRoute(builder: (context)=> HomePage()));
+          Navigator.push(context, MaterialPageRoute(builder: (context)=> VehicleDetails()));
         } ,
         child: Text("Next",textAlign: TextAlign.center,
           style:TextStyle(fontSize: 20,fontFamily:'Arimo',color: Colors.white,fontWeight: FontWeight.w700) ,
@@ -110,13 +110,13 @@ class _DriverDetailsState extends State<DriverDetails> {
                             children: [
                               Text(
                                 'First Name',
-                                style: TextStyle(fontFamily: 'Primo'),
+                                style: TextStyle(fontFamily: 'Arimo'),
                               ),
                               Container(
-                                width: 200,
+                                width: 150,
                                 child: TextFormField(
                                   autofocus: false,
-                                  style: TextStyle(fontFamily: 'Primo'),
+                                  style: TextStyle(fontFamily: 'Arimo'),
                                   keyboardType: TextInputType.text,
                                   textAlign: TextAlign.right,
                                   validator: (value) {
@@ -132,7 +132,7 @@ class _DriverDetailsState extends State<DriverDetails> {
                                   textInputAction: TextInputAction.next,
                                   inputFormatters: [FilteringTextInputFormatter.singleLineFormatter], // Limit to a single line
                                   decoration: InputDecoration(
-                                    hintStyle: TextStyle(fontFamily: 'Primo'),
+                                    hintStyle: TextStyle(fontFamily: 'Arimo'),
                                     border: InputBorder.none,
                                     contentPadding: EdgeInsets.symmetric(vertical: 10),
                                   ),
@@ -156,13 +156,13 @@ class _DriverDetailsState extends State<DriverDetails> {
                               children: [
                                 Text(
                                   'Last Name',
-                                  style: TextStyle(fontFamily: 'Primo'),
+                                  style: TextStyle(fontFamily: 'Arimo'),
                                 ),
                                 Container(
-                                  width: 200,
+                                  width: 150,
                                   child: TextFormField(
                                     autofocus: false,
-                                    style: TextStyle(fontFamily: 'Primo'),
+                                    style: TextStyle(fontFamily: 'Arimo'),
                                     keyboardType: TextInputType.text,
                                     textAlign: TextAlign.right,
                                     validator: (value) {
@@ -178,7 +178,7 @@ class _DriverDetailsState extends State<DriverDetails> {
                                     textInputAction: TextInputAction.next,
                                     inputFormatters: [FilteringTextInputFormatter.singleLineFormatter], // Limit to a single line
                                     decoration: InputDecoration(
-                                      hintStyle: TextStyle(fontFamily: 'Primo'),
+                                      hintStyle: TextStyle(fontFamily: 'Arimo'),
                                       border: InputBorder.none,
                                       contentPadding: EdgeInsets.symmetric(vertical: 10),
                                     ),
@@ -202,13 +202,13 @@ class _DriverDetailsState extends State<DriverDetails> {
                               children: [
                                 Text(
                                   'Country',
-                                  style: TextStyle(fontFamily: 'Primo'),
+                                  style: TextStyle(fontFamily: 'Arimo'),
                                 ),
                                 Container(
-                                  width: 200,
+                                  width: 150,
                                   child: TextFormField(
                                     autofocus: false,
-                                    style: TextStyle(fontFamily: 'Primo'),
+                                    style: TextStyle(fontFamily: 'Arimo'),
                                     keyboardType: TextInputType.text,
                                     textAlign: TextAlign.right,
                                     validator: (value) {
@@ -224,7 +224,7 @@ class _DriverDetailsState extends State<DriverDetails> {
                                     textInputAction: TextInputAction.next,
                                     inputFormatters: [FilteringTextInputFormatter.singleLineFormatter], // Limit to a single line
                                     decoration: InputDecoration(
-                                      hintStyle: TextStyle(fontFamily: 'Primo'),
+                                      hintStyle: TextStyle(fontFamily: 'Arimo'),
                                       border: InputBorder.none,
                                       contentPadding: EdgeInsets.symmetric(vertical: 10),
                                     ),
@@ -248,13 +248,13 @@ class _DriverDetailsState extends State<DriverDetails> {
                               children: [
                                 Text(
                                   'License Number',
-                                  style: TextStyle(fontFamily: 'Primo'),
+                                  style: TextStyle(fontFamily: 'Arimo'),
                                 ),
                                 Container(
-                                  width: 200,
+                                  width:150,
                                   child: TextFormField(
                                     autofocus: false,
-                                    style: TextStyle(fontFamily: 'Primo'),
+                                    style: TextStyle(fontFamily: 'Arimo'),
                                     keyboardType: TextInputType.text,
                                     textAlign: TextAlign.right,
                                     validator: (value) {
@@ -270,7 +270,7 @@ class _DriverDetailsState extends State<DriverDetails> {
                                     textInputAction: TextInputAction.next,
                                     inputFormatters: [FilteringTextInputFormatter.singleLineFormatter], // Limit to a single line
                                     decoration: InputDecoration(
-                                      hintStyle: TextStyle(fontFamily: 'Primo'),
+                                      hintStyle: TextStyle(fontFamily: 'Arimo'),
                                       border: InputBorder.none,
                                       contentPadding: EdgeInsets.symmetric(vertical: 10),
                                     ),
@@ -294,13 +294,13 @@ class _DriverDetailsState extends State<DriverDetails> {
                               children: [
                                 Text(
                                   'Expiration Date',
-                                  style: TextStyle(fontFamily: 'Primo'),
+                                  style: TextStyle(fontFamily: 'Arimo'),
                                 ),
                                 Container(
-                                  width: 200,
+                                  width: 150,
                                   child: TextFormField(
                                     autofocus: false,
-                                    style: TextStyle(fontFamily: 'Primo'),
+                                    style: TextStyle(fontFamily: 'Arimo'),
                                     keyboardType: TextInputType.text,
                                     textAlign: TextAlign.right,
                                     onTap: () async {
@@ -330,7 +330,7 @@ class _DriverDetailsState extends State<DriverDetails> {
                                     textInputAction: TextInputAction.next,
                                     inputFormatters: [FilteringTextInputFormatter.singleLineFormatter], // Limit to a single line
                                     decoration: InputDecoration(
-                                      hintStyle: TextStyle(fontFamily: 'Primo'),
+                                      hintStyle: TextStyle(fontFamily: 'Arimo'),
                                       border: InputBorder.none,
                                       contentPadding: EdgeInsets.symmetric(vertical: 10),
                                     ),
@@ -354,13 +354,13 @@ class _DriverDetailsState extends State<DriverDetails> {
                               children: [
                                 Text(
                                   'Date Of Birth',
-                                  style: TextStyle(fontFamily: 'Primo'),
+                                  style: TextStyle(fontFamily: 'Arimo'),
                                 ),
                                 Container(
-                                  width: 200,
+                                  width: 150,
                                   child: TextFormField(
                                     autofocus: false,
-                                    style: TextStyle(fontFamily: 'Primo'),
+                                    style: TextStyle(fontFamily: 'Arimo'),
                                     keyboardType: TextInputType.text,
                                     textAlign: TextAlign.right,
                                     onTap: () async {
@@ -389,7 +389,7 @@ class _DriverDetailsState extends State<DriverDetails> {
                                     textInputAction: TextInputAction.next,
                                     inputFormatters: [FilteringTextInputFormatter.singleLineFormatter], // Limit to a single line
                                     decoration: InputDecoration(
-                                      hintStyle: TextStyle(fontFamily: 'Primo'),
+                                      hintStyle: TextStyle(fontFamily: 'Arimo'),
                                       border: InputBorder.none,
                                       contentPadding: EdgeInsets.symmetric(vertical: 10),
                                     ),

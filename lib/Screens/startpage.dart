@@ -19,7 +19,7 @@ class StartPage extends StatelessWidget {
         onPressed:(){
 
 
-          Navigator.push(context, MaterialPageRoute(builder: (context)=> splash()));
+          Navigator.push(context, MaterialPageRoute(builder: (context)=> DriverDetails()));
 
         } ,
         child: Text("Continue >>",textAlign: TextAlign.center,
@@ -36,11 +36,11 @@ class StartPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             SizedBox(height: 100,),
-            Text('For Getting Approval',style: TextStyle(fontSize: 35,fontFamily: 'Arimo',fontWeight: FontWeight.w400,color: Colors.black),textAlign: TextAlign.start,),
+            Text('For Getting Approval',style: TextStyle(fontSize: 25,fontFamily: 'Arimo',fontWeight: FontWeight.w400,color: Colors.black),textAlign: TextAlign.start,),
             SizedBox(height: 10),
             Text('We kindly request you to provide us with some essential information to proceed with your admin approval.',style: TextStyle(fontSize: 20,fontFamily: 'Arimo',fontWeight: FontWeight.w300,color: Colors.black),textAlign: TextAlign.start,),
             SizedBox(
-              height: 25,
+              height: 18,
             ),
             Material(
               borderRadius: BorderRadius.circular(15),
@@ -79,7 +79,7 @@ class StartPage extends StatelessWidget {
                           onPressed: () {},
                           elevation: 2.0,
                           fillColor: Colors.redAccent,
-                          child: Text('2',style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
+                          child: Text('2',style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Colors.white),
                           ),
                           padding: EdgeInsets.all(10.0),
                           shape: CircleBorder(),
@@ -96,7 +96,7 @@ class StartPage extends StatelessWidget {
                           onPressed: () {},
                           elevation: 2.0,
                           fillColor: Colors.redAccent,
-                          child: Text('3',style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
+                          child: Text('3',style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Colors.white),
                           ),
                           padding: EdgeInsets.all(10.0),
                           shape: CircleBorder(),
@@ -115,7 +115,7 @@ class StartPage extends StatelessWidget {
                           },
                           elevation: 2.0,
                           fillColor: Colors.redAccent,
-                          child: Text('4',style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
+                          child: Text('4',style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Colors.white),
                           ),
                           padding: EdgeInsets.all(10.0),
                           shape: CircleBorder(),
