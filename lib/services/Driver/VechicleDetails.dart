@@ -4,6 +4,8 @@ import 'package:flutter_document_picker/flutter_document_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'dart:io';
 import 'dart:math';
+
+import '../../Home/homepage.dart';
 class VehicleDetails extends StatefulWidget {
   const VehicleDetails({super.key});
 
@@ -306,7 +308,7 @@ class _VehicleDetailsState extends State<VehicleDetails> {
               padding: EdgeInsets.fromLTRB(20, 15, 20, 15),
               minWidth: MediaQuery.of(context).size.width,
               onPressed: () async {
-
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> HomePage()));
               },
               child: Text(
                 "Save & Continue",

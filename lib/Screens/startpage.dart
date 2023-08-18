@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:velocitodriver/Screens/splash.dart';
 
+import '../services/Driver/driverdetails.dart';
+
 class StartPage extends StatelessWidget {
   const StartPage({Key? key}) : super(key: key);
 
@@ -108,7 +110,9 @@ class StartPage extends StatelessWidget {
                           ),
                         ),
                         RawMaterialButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(context, MaterialPageRoute(builder: (context)=>DriverDetails()));
+                          },
                           elevation: 2.0,
                           fillColor: Colors.redAccent,
                           child: Text('4',style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
