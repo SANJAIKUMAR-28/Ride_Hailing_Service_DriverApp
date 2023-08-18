@@ -46,21 +46,24 @@ class _DriverDetailsState extends State<DriverDetails> {
 
     );
     final loginButton = Material(
-      elevation: 2.0,
-      borderRadius: BorderRadius.circular(5),
+      borderRadius: BorderRadius.circular(10),
       color: Color.fromRGBO(255, 51, 51, 0.9),
       child: MaterialButton(
-        padding: EdgeInsets.fromLTRB(10,15,10,15),
+        padding: EdgeInsets.fromLTRB(20, 15, 20, 15),
         minWidth: MediaQuery.of(context).size.width,
-        splashColor: Colors.black.withOpacity(0.2),
-        onPressed:(){
+        onPressed: () async {
           Navigator.push(context, MaterialPageRoute(builder: (context)=> VehicleDetails()));
-        } ,
-        child: Text("Next",textAlign: TextAlign.center,
-          style:TextStyle(fontSize: 20,fontFamily:'Arimo',color: Colors.white,fontWeight: FontWeight.w700) ,
+        },
+        child: Text(
+          "Next",
+          textAlign: TextAlign.center,
+          style: TextStyle(
+              fontSize: 17,
+              fontFamily: 'Arimo',
+              color: Colors.white,
+              fontWeight: FontWeight.bold),
         ),
       ),
-
     );
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -76,7 +79,7 @@ class _DriverDetailsState extends State<DriverDetails> {
         elevation: 0,
       ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.only(left: 15,right: 15),
+        padding: const EdgeInsets.only(bottom:20,left: 15,right: 15),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,

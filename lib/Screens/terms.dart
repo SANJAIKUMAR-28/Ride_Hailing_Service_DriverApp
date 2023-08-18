@@ -14,28 +14,28 @@ class _TermsState extends State<Terms> {
   @override
   Widget build(BuildContext context) {
     final loginButton = Material(
-      elevation: 2.0,
-      borderRadius: BorderRadius.circular(5),
+      borderRadius: BorderRadius.circular(10),
       color: Color.fromRGBO(255, 51, 51, 0.9),
       child: MaterialButton(
-        padding: EdgeInsets.fromLTRB(10,15,10,15),
+        padding: EdgeInsets.fromLTRB(20, 15, 20, 15),
         minWidth: MediaQuery.of(context).size.width,
-        splashColor: Colors.black.withOpacity(0.2),
-        onPressed:(){
-
-
-          Navigator.push(context, MaterialPageRoute(builder: (context)=>const HomePage()));
-
-        } ,
-        child: Text("Submit >>",textAlign: TextAlign.center,
-          style:TextStyle(fontSize: 20,fontFamily:'Arimo',color: Colors.white,fontWeight: FontWeight.bold) ,
+        onPressed: () async {
+          Navigator.push(context, MaterialPageRoute(builder: (context)=> HomePage()));
+        },
+        child: Text(
+          "Submit",
+          textAlign: TextAlign.center,
+          style: TextStyle(
+              fontSize: 17,
+              fontFamily: 'Arimo',
+              color: Colors.white,
+              fontWeight: FontWeight.bold),
         ),
       ),
-
     );
     return Scaffold(
       body: SingleChildScrollView(
-        padding: const EdgeInsets.only(left: 15,right: 15),
+        padding: const EdgeInsets.only(bottom:20,left: 15,right: 15),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -49,7 +49,7 @@ class _TermsState extends State<Terms> {
             SizedBox(
               height: 15,
             ),
-            Text('Accept Velocito’s Terms & Review Privacy Policy',style: TextStyle(fontSize: 30,fontFamily: 'Arimo',fontWeight: FontWeight.w900,color: Colors.black),textAlign: TextAlign.start,),
+            Text('Accept Velocito’s Terms & Review Privacy Policy',style: TextStyle(fontSize: 24,fontFamily: 'Arimo',fontWeight: FontWeight.w900,color: Colors.black),textAlign: TextAlign.start,),
             SizedBox(height: 10),
             Text.rich(TextSpan(children: [
               TextSpan(
@@ -78,7 +78,7 @@ class _TermsState extends State<Terms> {
                   text: ' I am at least 18 years of age.',
                   style: TextStyle(fontFamily: 'Arimo')),
             ])),
-            SizedBox(height: 250),
+            SizedBox(height: 200),
             Row(
               children: [
                 Checkbox(
@@ -91,7 +91,7 @@ class _TermsState extends State<Terms> {
                     });
                   },
                 ),
-                Text('I Agree',style: TextStyle(fontSize: 16,fontWeight: FontWeight.w500,),)
+                Text('I Agree',style: TextStyle(fontFamily:'Arimo',fontSize: 16,fontWeight: FontWeight.w500,),)
               ],
             ),
             SizedBox(

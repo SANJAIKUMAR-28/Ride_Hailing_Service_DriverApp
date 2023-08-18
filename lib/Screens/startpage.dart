@@ -18,7 +18,7 @@ class StartPage extends StatelessWidget {
           Navigator.push(context, MaterialPageRoute(builder: (context)=> DriverDetails()));
         },
         child: Text(
-          "Save & Continue",
+          "Continue",
           textAlign: TextAlign.center,
           style: TextStyle(
               fontSize: 17,

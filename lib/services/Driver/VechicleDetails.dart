@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter_document_picker/flutter_document_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
+import 'package:velocitodriver/Screens/terms.dart';
 import 'dart:io';
 import 'dart:math';
 
@@ -308,7 +309,7 @@ class _VehicleDetailsState extends State<VehicleDetails> {
               padding: EdgeInsets.fromLTRB(20, 15, 20, 15),
               minWidth: MediaQuery.of(context).size.width,
               onPressed: () async {
-                Navigator.push(context, MaterialPageRoute(builder: (context)=> HomePage()));
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> Terms()));
               },
               child: Text(
                 "Save & Continue",
