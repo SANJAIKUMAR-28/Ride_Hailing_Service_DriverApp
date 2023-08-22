@@ -17,6 +17,8 @@ class VehicleDetails extends StatefulWidget {
 class _VehicleDetailsState extends State<VehicleDetails> {
   String name = "Prithvi";
   String IC ='0';
+  String RC='0';
+  String MC='0';
   @override
   Widget build(BuildContext context) {
     
@@ -126,7 +128,7 @@ class _VehicleDetailsState extends State<VehicleDetails> {
                                   final path = await FlutterDocumentPicker.openDocument();
                                   print(path);
                                   File file = File(path!);
-                                  firebase_storage.UploadTask? task = await uploadFile(file,IC);
+                                  firebase_storage.UploadTask? task = await uploadFile(file,'IC');
                                 },
                                 child:  Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
@@ -159,6 +161,11 @@ class _VehicleDetailsState extends State<VehicleDetails> {
                                  setState(() {
                                    IC='0';
                                  });
+                                 firebase_storage.FirebaseStorage.instance
+                                     .ref()
+                                     .child('New Driver Requests')
+                                     .child('/${name}')
+                                     .child('/${name}-IC.pdf').delete();
                                 },
                                 child:  Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
@@ -202,11 +209,13 @@ class _VehicleDetailsState extends State<VehicleDetails> {
                         children: [
                           Row(
                               children:[
-                                Icon(Icons.check_circle,color: Color.fromRGBO(153, 153, 153, 1),),
+                                (RC=='0')?
+                                Icon(Icons.check_circle,color: Color.fromRGBO(153, 153, 153, 1),):Icon(Icons.check_circle,color: Color.fromRGBO(255, 51, 51, 0.9),),
                                 SizedBox(width: 10,),
                                 Text('Registration Certificate',style: TextStyle(fontFamily: 'Arimo',color: Colors.grey),),
                               ]
                           ),
+                  (RC=='0')?
                           SizedBox(
                             width:100,
                             child: Material(
@@ -217,7 +226,10 @@ class _VehicleDetailsState extends State<VehicleDetails> {
                                 padding: EdgeInsets.fromLTRB(5, 10, 5, 10),
                                 minWidth: MediaQuery.of(context).size.width,
                                 onPressed: () async {
-
+                                  final path = await FlutterDocumentPicker.openDocument();
+                                  print(path);
+                                  File file = File(path!);
+                                  firebase_storage.UploadTask? task = await uploadFile(file,'RC');
                                 },
                                 child:  Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
@@ -237,7 +249,44 @@ class _VehicleDetailsState extends State<VehicleDetails> {
                                 ),
                               ),
                             ),
+                          ):SizedBox(
+                  width:100,
+                  child: Material(
+                    elevation: 2,
+                    borderRadius: BorderRadius.circular(10),
+                    color: Color.fromRGBO(153, 153, 153, 0.9),
+                    child: MaterialButton(
+                      padding: EdgeInsets.fromLTRB(5, 10, 5, 10),
+                      minWidth: MediaQuery.of(context).size.width,
+                      onPressed: () async {
+                        setState(() {
+                          RC='0';
+                        });
+                        firebase_storage.FirebaseStorage.instance
+                            .ref()
+                            .child('New Driver Requests')
+                            .child('/${name}')
+                            .child('/${name}-RC.pdf').delete();
+                      },
+                      child:  Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(Icons.cancel_outlined,color: Colors.white,size: 20,),
+                          SizedBox(width: 5,),
+                          Text(
+                            "Clear",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                fontSize: 13,
+                                fontFamily: 'Arimo',
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold),
                           ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
                         ],
                       ),
                     )),
@@ -261,11 +310,13 @@ class _VehicleDetailsState extends State<VehicleDetails> {
                         children: [
                           Row(
                               children:[
-                                Icon(Icons.check_circle,color: Color.fromRGBO(153, 153, 153, 1),),
+                                (MC=='0')?
+                                Icon(Icons.check_circle,color: Color.fromRGBO(153, 153, 153, 1),):Icon(Icons.check_circle,color: Color.fromRGBO(255, 51, 51, 0.9),),
                                 SizedBox(width: 10,),
                                 Text('MOT Certificate',style: TextStyle(fontFamily: 'Arimo',color: Colors.grey),),
                               ]
                           ),
+                          (MC=='0')?
                           SizedBox(
                             width:100,
                             child: Material(
@@ -276,7 +327,10 @@ class _VehicleDetailsState extends State<VehicleDetails> {
                                 padding: EdgeInsets.fromLTRB(5, 10, 5, 10),
                                 minWidth: MediaQuery.of(context).size.width,
                                 onPressed: () async {
-
+                                  final path = await FlutterDocumentPicker.openDocument();
+                                  print(path);
+                                  File file = File(path!);
+                                  firebase_storage.UploadTask? task = await uploadFile(file,'MC');
                                 },
                                 child:  Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
@@ -285,6 +339,43 @@ class _VehicleDetailsState extends State<VehicleDetails> {
                                     SizedBox(width: 5,),
                                     Text(
                                       "Upload",
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                          fontSize: 13,
+                                          fontFamily: 'Arimo',
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ):SizedBox(
+                            width:100,
+                            child: Material(
+                              elevation: 2,
+                              borderRadius: BorderRadius.circular(10),
+                              color: Color.fromRGBO(153, 153, 153, 0.9),
+                              child: MaterialButton(
+                                padding: EdgeInsets.fromLTRB(5, 10, 5, 10),
+                                minWidth: MediaQuery.of(context).size.width,
+                                onPressed: () async {
+                                  setState(() {
+                                    MC='0';
+                                  });
+                                   firebase_storage.FirebaseStorage.instance
+                                      .ref()
+                                      .child('New Driver Requests')
+                                      .child('/${name}')
+                                      .child('/${name}-MC.pdf').delete();
+                                },
+                                child:  Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(Icons.cancel_outlined,color: Colors.white,size: 20,),
+                                    SizedBox(width: 5,),
+                                    Text(
+                                      "Clear",
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
                                           fontSize: 13,
@@ -341,10 +432,12 @@ class _VehicleDetailsState extends State<VehicleDetails> {
     firebase_storage.UploadTask uploadTask;
 
     // Create a Reference to the file
-    firebase_storage.Reference ref = firebase_storage.FirebaseStorage.instance
-        .ref()
-        .child('Insurance Certificates')
-        .child('/${name}-INSURANCE.pdf');
+      firebase_storage.Reference ref = firebase_storage.FirebaseStorage.instance
+          .ref()
+          .child('New Driver Requests')
+          .child('/${name}')
+          .child('/${name}-${sts}.pdf');
+
 
     final metadata = firebase_storage.SettableMetadata(
         contentType: 'file/pdf',
@@ -353,7 +446,16 @@ class _VehicleDetailsState extends State<VehicleDetails> {
 
     uploadTask = ref.putData(await file.readAsBytes(), metadata);
     setState(() {
-      IC= '1';
+      if(sts=='IC') {
+        IC = '1';
+      }
+      else if(sts=='RC')
+      {
+        RC = '1';
+      }
+      else if(sts=="MC"){
+        MC = "1";
+      }
     });
     print("done..!");
     return Future.value(uploadTask);
