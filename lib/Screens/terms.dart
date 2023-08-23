@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:velocitodriver/Login/LogIn.dart';
 
 import '../Home/homepage.dart';
 
@@ -21,7 +22,7 @@ class _TermsState extends State<Terms> {
         minWidth: MediaQuery.of(context).size.width,
         onPressed: () async {
           if(_myBoolean){
-          Navigator.push(context, MaterialPageRoute(builder: (context)=> HomePage()));}
+          Navigator.push(context, MaterialPageRoute(builder: (context)=> Login()));}
         },
         child: Text(
           "Submit",
