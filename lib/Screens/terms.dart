@@ -15,12 +15,13 @@ class _TermsState extends State<Terms> {
   Widget build(BuildContext context) {
     final loginButton = Material(
       borderRadius: BorderRadius.circular(10),
-      color: Color.fromRGBO(255, 51, 51, 0.9),
+      color: (_myBoolean)?Color.fromRGBO(255, 51, 51, 0.9):Colors.grey,
       child: MaterialButton(
         padding: EdgeInsets.fromLTRB(20, 15, 20, 15),
         minWidth: MediaQuery.of(context).size.width,
         onPressed: () async {
-          Navigator.push(context, MaterialPageRoute(builder: (context)=> HomePage()));
+          if(_myBoolean){
+          Navigator.push(context, MaterialPageRoute(builder: (context)=> HomePage()));}
         },
         child: Text(
           "Submit",
