@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:velocitodriver/Screens/startpage.dart';
+import 'package:velocitodriver/Login/LogIn.dart';
 
 class splash extends StatefulWidget {
   const splash({super.key});
@@ -16,7 +16,7 @@ class _splashState extends State<splash> {
     super.initState();
 
     Timer(Duration(seconds: 5), () =>
-        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>StartPage())));
+        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>Login())));
   }
   @override
   Widget build(BuildContext context) {
