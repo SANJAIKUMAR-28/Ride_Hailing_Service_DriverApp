@@ -4,6 +4,7 @@ import 'package:firebase_database/firebase_database.dart' as db;
 import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:line_icons/line_icons.dart';
 
 import '../Model/user_model.dart';
 
@@ -44,7 +45,7 @@ class _HomePageState extends State<HomePage> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             if(request['STATUS']=="REQUESTED")
-              requestList(request['PASSENGER-NAME'], request['PASSENGER-NUMBER'], request['FROM'], request['TO'], request['VEHICLE'], request['COST'], request['STATUS'],request['key']),
+              requestList(request['PASSENGER-NAME'], request['PASSENGER-NUMBER'], request['FROM'], request['TO'], request['VEHICLE'], request['COST'],request['DISTANCE'], request['STATUS'],request['key']),
           ],
         ),
       ),
@@ -119,7 +120,7 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
-  Material requestList(String name,String num,String from,String to,String vehicle,String cost,String sts,String key){
+  Material requestList(String name,String num,String from,String to,String vehicle,String cost,String dist,String sts,String key){
     return Material(
         color: Color.fromRGBO(255, 245, 245, 1.0),
         borderRadius: BorderRadius.circular(15),
@@ -127,19 +128,100 @@ class _HomePageState extends State<HomePage> {
         child: Container(
           width: MediaQuery.of(context).size.width,
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(name),
-              Text(num),
-              Text(from),
-              Text(to),
-              Text(vehicle),
-              Text(cost),
-              Text(sts),
-              ElevatedButton(onPressed: (){
-                reference.child(key).update({'STATUS':'ACCEPTED'});
-                reference.child(key).update({'DRIVER-NAME':'${loggedInUser.name}'});
-                reference.child(key).update({'DRIVER-NUMBER':'${loggedInUser.phoneno}'});
-              }, child: Text('Accept'))
+              Padding(
+                padding: const EdgeInsets.only(left: 15,top: 10,right: 15,bottom: 10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        Material(
+                          borderRadius: BorderRadius.circular(5),
+                          child: Image.asset("assets/userimg.png",
+                          height: 55,
+                            width: 55,
+                          ),
+                        ),
+                        SizedBox(width: 10,),
+                        Text(name.toUpperCase(),style: TextStyle(fontFamily: 'Arimo',fontSize: 18,fontWeight: FontWeight.bold,color: Color.fromRGBO(62, 73,88, 1.0)),)
+                      ],
+                    ),
+                    Column(
+                      children: [
+                        Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children:[
+                              Icon(LineIcons.indianRupeeSign,size: 13,color: Colors.black,),
+                              SizedBox(width: 2,),
+                              Text(cost,style: TextStyle(
+                                  fontSize: 14,
+                                  fontFamily: 'Arimo',
+                                  color:
+                                  Colors.black,
+                                  fontWeight: FontWeight.bold),),
+                            ]
+                        ),
+                        Text(dist,style: TextStyle(
+                          fontSize: 12,
+                          fontFamily: 'Arimo',
+                          color:
+                          Color.fromRGBO(0, 0, 0, 0.60),
+                        ),),
+                      ],
+                    )
+                  ],
+                ),
+              ),
+              Divider(color: Colors.grey,),
+              Padding(
+                padding:const EdgeInsets.only(left: 15,top: 8,right: 15,bottom: 8),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('PICK-UP',style: TextStyle(fontFamily: 'Arimo',fontSize: 16,fontWeight: FontWeight.bold,color: Color.fromRGBO(62, 73,88, 1.0)),),
+                    Text(from,style: TextStyle(fontFamily: 'Arimo',fontSize: 16,fontWeight: FontWeight.w400,color: Colors.black),)
+                  ],
+                ),
+              ),
+              Divider(color: Colors.grey,),
+              Padding(
+                padding:const EdgeInsets.only(left: 15,top: 8,right: 15,bottom: 8),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('DROP-OFF',style: TextStyle(fontFamily: 'Arimo',fontSize: 16,fontWeight: FontWeight.bold,color: Color.fromRGBO(62, 73,88, 1.0)),),
+                    Text(to,style: TextStyle(fontFamily: 'Arimo',fontSize: 16,fontWeight: FontWeight.w400,color: Colors.black),)
+                  ],
+                ),
+              ),
+              Divider(color: Colors.grey,),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SizedBox(
+                    width: 140,
+                  child:Padding(
+                    padding: const EdgeInsets.only(bottom: 8),
+                    child: Material(
+                      borderRadius: BorderRadius.circular(10),
+                      color: Color.fromRGBO(255, 51, 51, 1.0),
+                      child: MaterialButton(
+                        onPressed: (){
+                          reference.child(key).update({'STATUS':'ACCEPTED'});
+                          reference.child(key).update({'DRIVER-NAME':'${loggedInUser.name}'});
+                          reference.child(key).update({'DRIVER-NUMBER':'${loggedInUser.phoneno}'});
+                        },
+                        child: Text('ACCEPT',style: TextStyle(fontFamily: 'Arimo',fontSize: 16,color: Colors.white),),
+                      ),
+                    ),
+                  ),
+                  ),
+                ],
+              )
             ],
           ),
         ),

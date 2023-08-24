@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:velocitodriver/Home/HomeScreen.dart';
 
 import '../Home/homepage.dart';
 import 'SignUp.dart';
@@ -199,7 +200,7 @@ class _LoginState extends State<Login> {
       {
         Fluttertoast.showToast(msg: "Login successful"),
         Navigator.of(context).pushReplacement(
-            MaterialPageRoute(builder: (context) => HomePage())),
+            MaterialPageRoute(builder: (context) => HomeScreen())),
 
       }).catchError((e) {
         Fluttertoast.showToast(msg: e!.message);

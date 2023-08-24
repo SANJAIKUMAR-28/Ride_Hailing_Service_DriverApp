@@ -41,6 +41,7 @@ dependencies:
   firebase_auth: ^4.7.2
   firebase_core: ^2.15.0
   firebase_database: ^10.2.4
+  google_nav_bar: ^5.0.6
   cloud_firestore: ^4.8.4
   intl: ^0.18.1
   fluttertoast: ^8.2.2
@@ -77,6 +78,7 @@ flutter:
     - assets/signupimg.png
     - assets/loginimg.png
     - assets/successdoc.png
+    - assets/userimg.png
 
   # assets:
   #   - images/a_dot_burr.jpeg
