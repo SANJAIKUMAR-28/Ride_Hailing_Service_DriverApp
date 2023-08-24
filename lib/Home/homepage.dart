@@ -137,6 +137,8 @@ class _HomePageState extends State<HomePage> {
               Text(sts),
               ElevatedButton(onPressed: (){
                 reference.child(key).update({'STATUS':'ACCEPTED'});
+                reference.child(key).update({'DRIVER-NAME':'${loggedInUser.name}'});
+                reference.child(key).update({'DRIVER-NUMBER':'${loggedInUser.phoneno}'});
               }, child: Text('Accept'))
             ],
           ),
