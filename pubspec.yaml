@@ -48,6 +48,9 @@ dependencies:
   email_otp: ^2.0.1
   line_icons: ^2.0.3
   animated_text_kit: ^4.2.2
+  image_picker: ^1.0.2
+  google_mlkit_text_recognition: ^0.10.0
+  image_cropper: ^4.0.1
 
 dev_dependencies:
   flutter_test:

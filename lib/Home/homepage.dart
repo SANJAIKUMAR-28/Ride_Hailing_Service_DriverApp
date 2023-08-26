@@ -214,6 +214,7 @@ class _HomePageState extends State<HomePage> {
                           reference.child(key).update({'STATUS':'ACCEPTED'});
                           reference.child(key).update({'DRIVER-NAME':'${loggedInUser.name}'});
                           reference.child(key).update({'DRIVER-NUMBER':'${loggedInUser.phoneno}'});
+                          reference.child(key).update({'PASSENGER-STATUS':'WAITING'});
                         },
                         child: Text('ACCEPT',style: TextStyle(fontFamily: 'Arimo',fontSize: 16,color: Colors.white),),
                       ),
@@ -228,3 +229,5 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
+
+
