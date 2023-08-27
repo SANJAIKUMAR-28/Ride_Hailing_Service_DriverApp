@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart' as db;
@@ -5,6 +7,8 @@ import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
+import 'package:lottie/lottie.dart';
+import 'package:velocitodriver/Screens/PickUp.dart';
 
 import '../Model/user_model.dart';
 
@@ -45,7 +49,9 @@ class _HomePageState extends State<HomePage> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             if(request['STATUS']=="REQUESTED")
-              requestList(request['PASSENGER-NAME'], request['PASSENGER-NUMBER'], request['FROM'], request['TO'], request['VEHICLE'], request['COST'],request['DISTANCE'], request['STATUS'],request['key']),
+              requestList(request['PASSENGER-NAME'], request['PASSENGER-NUMBER'], request['FROM'], request['TO'], request['VEHICLE'], request['COST'],request['DISTANCE'], request['STATUS'],request['PASSENGER-STATUS'],request['key']),
+            if(request['PASSENGER-STATUS']=="CONFIRMED")
+              checksts(),
           ],
         ),
       ),
@@ -120,7 +126,7 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
-  Material requestList(String name,String num,String from,String to,String vehicle,String cost,String dist,String sts,String key){
+  Material requestList(String name,String num,String from,String to,String vehicle,String cost,String dist,String sts,String psgsts,String key){
     return Material(
         color: Color.fromRGBO(255, 245, 245, 1.0),
         borderRadius: BorderRadius.circular(15),
@@ -215,6 +221,28 @@ class _HomePageState extends State<HomePage> {
                           reference.child(key).update({'DRIVER-NAME':'${loggedInUser.name}'});
                           reference.child(key).update({'DRIVER-NUMBER':'${loggedInUser.phoneno}'});
                           reference.child(key).update({'PASSENGER-STATUS':'WAITING'});
+                          reference.child(key).update({'DRIVER-ID':user?.uid});
+                          showModalBottomSheet(context: context, builder: (context){
+                            return Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.only(topLeft: Radius.circular(20),topRight: Radius.circular(20)),
+                                color: Colors.white,
+                              ),
+                              height: 150,
+                              width: MediaQuery.of(context).size.width,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Lottie.asset('assets/waiting.json',
+                                      height: 50,
+                                      width: 50
+                                  ),
+                                  Text('Waiting for passenger confirmation',style: TextStyle(fontFamily: 'Arimo'),),
+                                  Text('Please hold on for a moment',style: TextStyle(fontFamily: 'Arimo'),)
+                                ],
+                              ),
+                            );
+                          });
                         },
                         child: Text('ACCEPT',style: TextStyle(fontFamily: 'Arimo',fontSize: 16,color: Colors.white),),
                       ),
@@ -227,6 +255,11 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
     );
+  }
+  checksts(){
+        Navigator.push(context,
+            MaterialPageRoute(
+                builder: (context) => PickUp()));
   }
 }
 

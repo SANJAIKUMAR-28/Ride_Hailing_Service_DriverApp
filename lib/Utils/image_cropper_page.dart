@@ -18,7 +18,7 @@ Future<String> imageCropperView(String? path, BuildContext context) async {
     uiSettings: [
       AndroidUiSettings(
           toolbarTitle: 'Crop Image',
-          toolbarColor: Colors.blue,
+          toolbarColor:  Color.fromRGBO(255, 51, 51, 0.9),
           toolbarWidgetColor: Colors.white,
           initAspectRatio: CropAspectRatioPreset.original,
           lockAspectRatio: false),

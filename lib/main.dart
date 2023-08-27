@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:velocitodriver/Screens/PickUp.dart';
 import 'package:velocitodriver/Screens/startpage.dart';
 import 'package:velocitodriver/services/Driver/VechicleDetails.dart';
 import 'package:velocitodriver/services/Driver/driverdetails.dart';

@@ -41,56 +41,60 @@ class _DriverDetailsState extends State<DriverDetails> {
   @override
   Widget build(BuildContext context) {
     final scanLicense = Material(
-      elevation: 2.0,
       borderRadius: BorderRadius.circular(5),
       color: Colors.white,
-
-      child: MaterialButton(
-        padding: EdgeInsets.fromLTRB(10,15,10,15),
-        minWidth: MediaQuery.of(context).size.width,
-        splashColor: Colors.black.withOpacity(0.2),
-        onPressed:(){
-          imagePickerModal(context, onCameraTap: () {
-            log("Camera");
-            pickImage(source: ImageSource.camera).then((value) {
-              if (value != '') {
-                imageCropperView(value, context).then((value) {
-                  if (value != '') {
-                    final InputImage inputImage = InputImage.fromFilePath(value);
-                    processImage(inputImage);
-                  }
-                });
-              }
+      child: Container(
+        decoration: BoxDecoration(
+            border: Border.all(color: Color.fromRGBO(151, 173, 182, 0.2)),
+            borderRadius: BorderRadius.circular(5),
+        ),
+        child: MaterialButton(
+          padding: EdgeInsets.fromLTRB(10,15,10,15),
+          minWidth: MediaQuery.of(context).size.width,
+          splashColor: Colors.black.withOpacity(0.2),
+          onPressed:(){
+            imagePickerModal(context, onCameraTap: () {
+              log("Camera");
+              pickImage(source: ImageSource.camera).then((value) {
+                if (value != '') {
+                  imageCropperView(value, context).then((value) {
+                    if (value != '') {
+                      final InputImage inputImage = InputImage.fromFilePath(value);
+                      processImage(inputImage);
+                    }
+                  });
+                }
+              });
+            }, onGalleryTap: () {
+              log("Gallery");
+              pickImage(source: ImageSource.gallery).then((value) {
+                if (value != '') {
+                  imageCropperView(value, context).then((value) {
+                    if (value != '') {
+                      imageCropperView(value, context).then((value) {
+                        if (value != '') {
+                          final InputImage inputImage = InputImage.fromFilePath(value);
+                          processImage(inputImage);
+                        }
+                      });
+                    }
+                  });
+                }
+              });
             });
-          }, onGalleryTap: () {
-            log("Gallery");
-            pickImage(source: ImageSource.gallery).then((value) {
-              if (value != '') {
-                imageCropperView(value, context).then((value) {
-                  if (value != '') {
-                    imageCropperView(value, context).then((value) {
-                      if (value != '') {
-                        final InputImage inputImage = InputImage.fromFilePath(value);
-                        processImage(inputImage);
-                      }
-                    });
-                  }
-                });
-              }
-            });
-          });
 
-        } ,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Icon(Icons.document_scanner,color: Colors.redAccent[100],size: 40,),
-            SizedBox(
-              width: 10,
-            ),
-            Text("Scan license to autofill",textAlign: TextAlign.center,
-          style:TextStyle(fontFamily:'Arimo',color: Colors. black,fontWeight: FontWeight.w700) ,
-        ),]),
+          } ,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Icon(Icons.document_scanner,color: Colors.redAccent[100],size: 40,),
+              SizedBox(
+                width: 10,
+              ),
+              Text("Scan license to autofill",textAlign: TextAlign.center,
+            style:TextStyle(fontFamily:'Arimo',color: Colors. black,fontWeight: FontWeight.w500) ,
+          ),]),
+        ),
       ),
 
     );
@@ -134,13 +138,13 @@ class _DriverDetailsState extends State<DriverDetails> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             SizedBox(height: 10,),
-            Text('Enter your info exactly as it appears on your license so Kanan can verify your eligibility to route.',style: TextStyle(fontSize: 18,fontFamily: 'Arimo',fontWeight: FontWeight.w400,color: Colors.black),textAlign: TextAlign.start,),
+            Text('Enter your info exactly as it appears on your license so admin can verify your eligibility to route.',style: TextStyle(fontSize: 16,fontFamily: 'Arimo',fontWeight: FontWeight.w400,color: Colors.black),textAlign: TextAlign.start,),
             SizedBox(
-              height: 25,
+              height: 20,
             ),
             scanLicense,
             SizedBox(
-              height: 30,
+              height: 20,
             ),
             Material(
                 borderRadius: BorderRadius.circular(10),
