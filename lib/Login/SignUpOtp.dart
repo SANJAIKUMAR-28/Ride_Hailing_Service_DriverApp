@@ -469,7 +469,7 @@ class _SignupOTPState extends State<SignupOTP> {
         .set(userModel.toMap());
     Fluttertoast.showToast(msg: "Account created successfully !!");
     Navigator.pushAndRemoveUntil((context),
-        MaterialPageRoute(builder: (context) => StartPage()), (route) => false);
+        MaterialPageRoute(builder: (context) => StartPage(uid: user.uid, name: widget.name,)), (route) => false);
   }
 
 }

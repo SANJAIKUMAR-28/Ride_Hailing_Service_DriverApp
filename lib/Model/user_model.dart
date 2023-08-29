@@ -3,7 +3,6 @@ class UserModel{
   String? email;
   String? name;
   String? phoneno;
-
   UserModel({this.uid,this.email,this.name,this.phoneno});
   //recieve data from server
   factory UserModel.fromMap(map){

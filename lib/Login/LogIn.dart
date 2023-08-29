@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:velocitodriver/Home/HomeScreen.dart';
+import 'package:velocitodriver/services/Driver/VechicleDetails.dart';
 import 'package:velocitodriver/services/Driver/driverdetails.dart';
 
 import '../Home/homepage.dart';
@@ -170,7 +171,7 @@ class _LoginState extends State<Login> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => DriverDetails()));
+                                  builder: (context) => Signup()));
                         },
                         child: Text(" Register now",
                             style: TextStyle(

@@ -15,7 +15,9 @@ import 'VechicleDetails.dart';
 
 
 class DriverDetails extends StatefulWidget {
-  const DriverDetails({super.key});
+  final String uid;
+  final String name;
+  const DriverDetails({super.key, required this.uid, required this.name});
 
   @override
   State<DriverDetails> createState() => _DriverDetailsState();
@@ -105,7 +107,7 @@ class _DriverDetailsState extends State<DriverDetails> {
         padding: EdgeInsets.fromLTRB(20, 15, 20, 15),
         minWidth: MediaQuery.of(context).size.width,
         onPressed: () async {
-          Navigator.push(context, MaterialPageRoute(builder: (context)=> VehicleDetails()));
+          Navigator.push(context, MaterialPageRoute(builder: (context)=> VehicleDetails(uid: widget.uid, name: widget.name,)));
         },
         child: Text(
           "Next",

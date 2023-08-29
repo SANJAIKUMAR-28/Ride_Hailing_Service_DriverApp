@@ -52,6 +52,7 @@ dependencies:
   google_mlkit_text_recognition: ^0.10.0
   image_cropper: ^4.0.1
   lottie: ^2.6.0
+  csv: ^5.0.2
 
 dev_dependencies:
   flutter_test:
@@ -84,6 +85,7 @@ flutter:
     - assets/successdoc.png
     - assets/userimg.png
     - assets/waiting.json
+    - assets/data.csv
 
   # assets:
   #   - images/a_dot_burr.jpeg
@@ -107,6 +109,9 @@ flutter:
     - family: nova
       fonts:
         - asset: fonts/NovaSlim-Regular.ttf
+    - family: PoppinsBold
+      fonts:
+        - asset: fonts/Poppins-Bold.ttf
 
   # fonts:
   #   - family: Schyler

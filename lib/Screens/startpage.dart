@@ -4,7 +4,9 @@ import 'package:velocitodriver/Screens/splash.dart';
 import '../services/Driver/driverdetails.dart';
 
 class StartPage extends StatelessWidget {
-  const StartPage({Key? key}) : super(key: key);
+  final String uid;
+  final String name;
+  const StartPage({Key? key, required this.uid, required this.name}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +21,7 @@ class StartPage extends StatelessWidget {
         onPressed:(){
 
 
-          Navigator.push(context, MaterialPageRoute(builder: (context)=> DriverDetails()));
+          Navigator.push(context, MaterialPageRoute(builder: (context)=> DriverDetails(uid: uid, name: name,)));
 
         } ,
         child: Text("Continue >>",textAlign: TextAlign.center,
@@ -111,7 +113,7 @@ class StartPage extends StatelessWidget {
                         ),
                         RawMaterialButton(
                           onPressed: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (context)=>DriverDetails()));
+
                           },
                           elevation: 2.0,
                           fillColor: Colors.redAccent,

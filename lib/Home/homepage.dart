@@ -22,9 +22,13 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   User? user = FirebaseAuth.instance.currentUser;
   UserModel loggedInUser = UserModel();
+  String vehicletype='';
+  String vehiclemake='';
+  String vehiclenum='';
   late String name = '';
   db.Query dbRef = db.FirebaseDatabase.instance.ref().child('Requests');
   db.DatabaseReference reference = db.FirebaseDatabase.instance.ref().child('Requests');
+  bool _isEnabled=false;
   @override
   void initState() {
     super.initState();
@@ -36,6 +40,9 @@ class _HomePageState extends State<HomePage> {
       this.loggedInUser = UserModel.fromMap(value.data());
       setState(() {
         name = loggedInUser.name!;
+        vehicletype=value['Vehicle-type'];
+        vehiclemake=value['Vehicle-make'];
+        vehiclenum=value['Vehicle-number'];
       });
       //_location();
     });
@@ -114,15 +121,72 @@ class _HomePageState extends State<HomePage> {
         surfaceTintColor: Colors.transparent,
       ),
       backgroundColor: Colors.white,
-      body: FirebaseAnimatedList(
-        query: dbRef,
-        itemBuilder: (BuildContext context, db.DataSnapshot snapshot, Animation<double> animation, int index) {
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(
+                  height: 50,
+                  width: MediaQuery.of(context).size.width,
+                  child: Material(
+                    color: Color.fromRGBO(220, 220, 220, 1.0),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Text('   '),
+                          Text(' ON DUTY',textAlign:TextAlign.center,style: TextStyle(fontFamily: 'PoppinsBold',fontSize: 24),),
+                          SizedBox(
+                            width: 50,
+                            child: InkWell(
+                              onTap: (){
+                                setState(() {
+                                  _isEnabled=!_isEnabled;
+                                });
+                              },
+                              child: Material(
+                                borderRadius: BorderRadius.circular(15),
+                                color: (_isEnabled)?Color.fromRGBO(255, 51, 51, 1.0):Colors.grey,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(1.0),
+                                  child: Row(
+                                    mainAxisAlignment: (_isEnabled)?MainAxisAlignment.end:MainAxisAlignment.start,
+                                    children: [
+                                      Icon(Icons.circle,color: Colors.white,),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height,
+              child: FirebaseAnimatedList(
+                query: dbRef,
+                itemBuilder: (BuildContext context, db.DataSnapshot snapshot, Animation<double> animation, int index) {
+                  if(snapshot.value==null){
+                    return Text("No rides");
+                  }
+                  Map request = snapshot.value as Map;
+                  request['key'] = snapshot.key;
 
-          Map request = snapshot.value as Map;
-          request['key'] = snapshot.key;
+                  return listItem(request: request);
+                },
+              ),
+            ),
 
-          return listItem(request: request);
-        },
+          ],
+        ),
       ),
     );
   }
@@ -222,6 +286,9 @@ class _HomePageState extends State<HomePage> {
                           reference.child(key).update({'DRIVER-NUMBER':'${loggedInUser.phoneno}'});
                           reference.child(key).update({'PASSENGER-STATUS':'WAITING'});
                           reference.child(key).update({'DRIVER-ID':user?.uid});
+                          reference.child(key).update({'VEHICLE-TYPE':vehicletype});
+                          reference.child(key).update({'VEHICLE-MAKE':vehiclemake});
+                          reference.child(key).update({'VEHICLE-NUMBER':vehiclenum});
                           showModalBottomSheet(context: context, builder: (context){
                             return Container(
                               decoration: BoxDecoration(
