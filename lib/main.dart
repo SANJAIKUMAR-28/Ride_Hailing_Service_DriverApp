@@ -1,5 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:velocitodriver/Home/HomeScreen.dart';
+import 'package:velocitodriver/Home/LocaleString.dart';
+import 'package:velocitodriver/Login/LogIn.dart';
 import 'package:velocitodriver/Screens/PickUp.dart';
 import 'package:velocitodriver/Screens/startpage.dart';
 import 'package:velocitodriver/services/Driver/VechicleDetails.dart';
@@ -21,7 +26,9 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
+      translations: LocaleString(),
+      locale: Locale('en','US'),
       debugShowCheckedModeBanner: false,
       title: 'Velo Drive',
       theme: ThemeData(
@@ -43,7 +50,23 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.redAccent),
         useMaterial3: true,
       ),
-      home: splash(),
+      home: StreamBuilder<User?>(
+          stream: FirebaseAuth.instance.authStateChanges(),
+          builder: (context, snapshot) {
+            if(snapshot.hasError){
+              return Text('Something went wrong');
+            }
+            if(snapshot.connectionState==ConnectionState.active){
+              if(snapshot.data==null){
+                return Login();
+              }
+              else{
+                return HomeScreen();
+              }
+            }
+            return Center(child: CircularProgressIndicator(),);
+          }
+      ),
     );
   }
 }

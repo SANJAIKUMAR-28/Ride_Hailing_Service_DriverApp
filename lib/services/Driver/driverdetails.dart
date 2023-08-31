@@ -359,7 +359,7 @@ class _DriverDetailsState extends State<DriverDetails> {
         }
         if (lineText.contains('TN')) {
           int index = lineText.indexOf('T');
-          license = lineText.substring(index,23);
+          license = lineText.substring(index);
         }
 
         // Check for account number with fixed length (e.g., 10 characters)

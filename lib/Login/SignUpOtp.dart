@@ -462,6 +462,8 @@ class _SignupOTPState extends State<SignupOTP> {
     userModel.uid = user.uid;
     userModel.name = widget.name;
     userModel.phoneno = widget.phn;
+    userModel.stars='0';
+    userModel.feedbacks='0';
 
     await firebaseFirestore
         .collection("drivers")

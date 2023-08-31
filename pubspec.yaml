@@ -51,6 +51,7 @@ dependencies:
   image_picker: ^1.0.2
   google_mlkit_text_recognition: ^0.10.0
   image_cropper: ^4.0.1
+  get: ^4.6.5
   lottie: ^2.6.0
   csv: ^5.0.2
 
@@ -86,6 +87,7 @@ flutter:
     - assets/userimg.png
     - assets/waiting.json
     - assets/data.csv
+    - assets/loc.png
 
   # assets:
   #   - images/a_dot_burr.jpeg

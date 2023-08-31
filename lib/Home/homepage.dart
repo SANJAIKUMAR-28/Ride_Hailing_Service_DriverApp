@@ -6,6 +6,8 @@ import 'package:firebase_database/firebase_database.dart' as db;
 import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:lottie/lottie.dart';
 import 'package:velocitodriver/Screens/PickUp.dart';
@@ -25,7 +27,7 @@ class _HomePageState extends State<HomePage> {
   String vehicletype='';
   String vehiclemake='';
   String vehiclenum='';
-  late String name = '';
+  String name = '';
   db.Query dbRef = db.FirebaseDatabase.instance.ref().child('Requests');
   db.DatabaseReference reference = db.FirebaseDatabase.instance.ref().child('Requests');
   bool _isEnabled=false;
@@ -59,6 +61,7 @@ class _HomePageState extends State<HomePage> {
               requestList(request['PASSENGER-NAME'], request['PASSENGER-NUMBER'], request['FROM'], request['TO'], request['VEHICLE'], request['COST'],request['DISTANCE'], request['STATUS'],request['PASSENGER-STATUS'],request['key']),
             if(request['PASSENGER-STATUS']=="CONFIRMED")
               checksts(),
+
           ],
         ),
       ),
@@ -91,7 +94,7 @@ class _HomePageState extends State<HomePage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Good Morning',
+                    greetings(),
                     style: TextStyle(
                         fontSize: 12,
                         fontFamily: 'Arimo',
@@ -138,7 +141,8 @@ class _HomePageState extends State<HomePage> {
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           Text('   '),
-                          Text(' ON DUTY',textAlign:TextAlign.center,style: TextStyle(fontFamily: 'PoppinsBold',fontSize: 24),),
+                          (_isEnabled)?
+                          Text(' ON DUTY',textAlign:TextAlign.center,style: TextStyle(fontFamily: 'PoppinsBold',fontSize: 24),):Text(' OFF DUTY',textAlign:TextAlign.center,style: TextStyle(fontFamily: 'PoppinsBold',fontSize: 24),),
                           SizedBox(
                             width: 50,
                             child: InkWell(
@@ -169,6 +173,7 @@ class _HomePageState extends State<HomePage> {
                 ),
               ],
             ),
+            (_isEnabled)?
             SizedBox(
               height: MediaQuery.of(context).size.height,
               child: FirebaseAnimatedList(
@@ -183,11 +188,40 @@ class _HomePageState extends State<HomePage> {
                   return listItem(request: request);
                 },
               ),
+            ):Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                SizedBox(height: 200,),
+                Stack(
+                  children: [CircleAvatar(
+                    radius: 40,
+                    backgroundColor: Color.fromRGBO(0, 0, 0, 0.04),
+                  ),
+                    Positioned.fill(
+                        child: Align(
+                            alignment: Alignment.center,
+                            child: Image.asset('assets/loc.png',height: 40,width: 40,)))
+        ]
+                ),
+                SizedBox(height: 10,),
+                Text('Inactive'.tr,style: TextStyle(fontSize: 18,fontFamily: 'Arimo',fontWeight: FontWeight.w600),),
+                SizedBox(height: 8,),
+                Text('\"Currently your account is off duty, and',style: TextStyle(fontSize: 14,fontFamily: 'Arimo',fontWeight: FontWeight.w300,color: Colors.grey),),
+                Text('there no ongoing trips\"',style: TextStyle(fontSize: 14,fontFamily: 'Arimo',fontWeight: FontWeight.w300,color: Colors.grey),),
+              ],
             ),
 
           ],
         ),
       ),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: (){
+      //     var locale = Locale('ta','IN');
+      //     Get.updateLocale(locale);
+      //   },
+      //   child: Text('LAN'),
+      // ),
     );
   }
   Material requestList(String name,String num,String from,String to,String vehicle,String cost,String dist,String sts,String psgsts,String key){
@@ -327,6 +361,22 @@ class _HomePageState extends State<HomePage> {
         Navigator.push(context,
             MaterialPageRoute(
                 builder: (context) => PickUp()));
+  }
+  String greetings(){
+    String greeting ='';
+    DateTime dateTime=DateTime.now();
+    String hour= "${dateTime.hour}";
+    if(int.parse(hour)>0&&int.parse(hour)<=11){
+      greeting="Good Morning";
+    }else if(int.parse(hour)>=12&&int.parse(hour)<16){
+      greeting="Good Afternoon";
+    }
+    else if(int.parse(hour)>=16&&int.parse(hour)<=19){
+      greeting="Good Evening";
+    }else if(int.parse(hour)>=19&&int.parse(hour)<00){
+      greeting="Good Evening";
+    }
+    return greeting;
   }
 }
 
