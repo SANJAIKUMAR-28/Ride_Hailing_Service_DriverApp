@@ -1,6 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:line_icons/line_icon.dart';
+import 'package:line_icons/line_icons.dart';
 import 'package:velocitodriver/Home/HomeScreen.dart';
 import 'package:velocitodriver/services/Driver/VechicleDetails.dart';
 import 'package:velocitodriver/services/Driver/driverdetails.dart';
@@ -20,6 +24,10 @@ class _LoginState extends State<Login> {
   final emailEditingController = new TextEditingController();
   final passwordEditingController = new TextEditingController();
   bool loading = false;
+  String lancode='en';
+  String countrycode='US';
+  bool val=false;
+  bool val2=false;
   final _auth=FirebaseAuth.instance;
   @override
   Widget build(BuildContext context) {
@@ -187,6 +195,140 @@ class _LoginState extends State<Login> {
             ),
           ),
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.redAccent,
+        onPressed: (){
+          showDialog(
+              context: context,
+              builder: (context) {
+                return AlertDialog(
+                    surfaceTintColor: Colors.white,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10)),
+                    content: Container(
+                      height: 250,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(40),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text('Choose language',style: TextStyle(fontFamily: 'Arimo',fontWeight: FontWeight.bold,color: Color.fromRGBO(62, 73,88, 1.0) ),),
+                            SizedBox(height: 20,),
+                            Material(
+                              borderRadius: BorderRadius.circular(10),
+                              color: Colors.white,
+                              child: Container(
+                                width: 300,
+                                decoration: BoxDecoration(
+                                    border: Border.all(color: Color.fromRGBO(151, 173, 182, 0.2)),
+                                    borderRadius: BorderRadius.circular(10)
+                                ),
+                                child: MaterialButton(
+                                  splashColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                  onPressed: () async {
+                                    setState(()  {
+                                      lancode='en';
+                                      countrycode='US';
+                                      val=!val;
+                                    });
+
+                                  },
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(10.0),
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      children: [
+                                        (val)?
+                                        Icon(Icons.circle,color: Color.fromRGBO(255, 51, 51, 1.0),size: 10,):Icon(Icons.circle,color: Colors.grey,size: 10,),
+                                        SizedBox(width: 10,),
+                                        const Text("English",textAlign: TextAlign.left,
+                                            style: TextStyle(fontWeight: FontWeight.w500,
+                                                fontSize: 18,fontFamily: 'Arimo',color: Color.fromRGBO(255, 51, 51, 1.0))),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            SizedBox(height: 20,),
+                            Material(
+                              borderRadius: BorderRadius.circular(10),
+                              color: Colors.white,
+                              child: Container(
+                                width: 300,
+                                decoration: BoxDecoration(
+                                    border: Border.all(color: Color.fromRGBO(151, 173, 182, 0.2)),
+                                    borderRadius: BorderRadius.circular(10)
+                                ),
+                                child: MaterialButton(
+                                  splashColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                  onPressed: () async {
+                                    setState(() {
+                                      lancode='ta';
+                                      countrycode='IN';
+                                      val2=!val2;
+                                    });
+
+                                  },
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(10.0),
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      children: [
+                                        (val2)?
+                                        Icon(Icons.circle,color: Color.fromRGBO(255, 51, 51, 1.0),size: 10,):Icon(Icons.circle,color: Colors.grey,size: 10,),
+                                        SizedBox(width: 10,),
+                                        const Text("தமிழ்",textAlign: TextAlign.left,
+                                            style: TextStyle(fontWeight: FontWeight.w500,
+                                                fontSize: 18,fontFamily: 'Arimo',color: Color.fromRGBO(255, 51, 51, 1.0))),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            SizedBox(height: 20,),
+                            SizedBox(
+                              width:200,
+                              child: Material(
+                                elevation: 2,
+                                borderRadius: BorderRadius.circular(15),
+                                color: Color.fromRGBO(255, 51, 51, 0.9),
+                                child: MaterialButton(
+                                  padding: EdgeInsets.fromLTRB(5, 10, 5, 10),
+                                  minWidth: MediaQuery.of(context).size.width,
+                                  onPressed: () async {
+                                    var locale = Locale(lancode,countrycode);
+                                    Get.updateLocale(locale);
+                                    Navigator.of(context).pop();
+                                  },
+                                  child:  Text(
+                                    "Change",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                        fontSize: 13,
+                                        fontFamily: 'Arimo',
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ));
+              });
+
+        },
+        child: Icon(LineIcons.language,color: Colors.white,),
       ),
     );
   }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:line_icons/line_icons.dart';
+import 'package:velocitodriver/Home/ProfilePage.dart';
 import 'package:velocitodriver/Home/homepage.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -17,7 +18,7 @@ TextStyle(fontFamily: 'Arimo', fontSize: 11, fontWeight: FontWeight.bold);
 static const List<Widget> _widgetOptions = <Widget>[
 HomePage(),
   HomePage(),
-  HomePage(),
+  ProfilePage(),
 
 ];
 
@@ -47,8 +48,8 @@ Widget build(BuildContext context) {
                     textStyle: _style,
                   ),
                   GButton(
-                    icon: LineIcons.history,
-                    text: 'History',
+                    icon: LineIcons.user,
+                    text: 'Profile',
                     textStyle: _style,
                   ),
                 ],
