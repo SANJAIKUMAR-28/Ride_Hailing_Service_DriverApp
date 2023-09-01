@@ -1,8 +1,10 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:email_otp/email_otp.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:get/get.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:velocitodriver/Screens/startpage.dart';
 import 'dart:async';
@@ -300,14 +302,16 @@ class _SignupOTPState extends State<SignupOTP> {
               SizedBox(
                 height: 80,
               ),
-              Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                Text(
-                  'Almost there',
-                  textAlign: TextAlign.left,
-                  style: TextStyle(
-                      fontSize: 30,
-                      fontFamily: 'Arimo',
-                      fontWeight: FontWeight.bold),
+              Row(mainAxisAlignment: MainAxisAlignment.start, children: [
+                Flexible(
+                  child: Text(
+                    'Almost there'.tr,
+                    textAlign: TextAlign.left,
+                    style: TextStyle(
+                        fontSize: 30,
+                        fontFamily: 'Arimo',
+                        fontWeight: FontWeight.bold),
+                  ),
                 ),
               ]),
               SizedBox(
@@ -315,7 +319,7 @@ class _SignupOTPState extends State<SignupOTP> {
               ),
               Text.rich(TextSpan(children: [
                 TextSpan(
-                    text: 'Please enter the 6-digit code sent to your email ',
+                    text: 'Please enter the 6-digit code sent to your email '.tr,
                     style: TextStyle(fontFamily: 'Arimo')),
                 TextSpan(
                     text: '${widget.mail}',
@@ -324,7 +328,7 @@ class _SignupOTPState extends State<SignupOTP> {
                         fontWeight: FontWeight.bold,
                         color: Color.fromRGBO(255, 51, 51, 1.0))),
                 TextSpan(
-                    text: ' for verification',
+                    text: ' for verification'.tr,
                     style: TextStyle(fontFamily: 'Arimo'))
               ])),
               SizedBox(
@@ -387,7 +391,7 @@ class _SignupOTPState extends State<SignupOTP> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Text("Didn\'t receive any code?",
+                  Text("Didn\'t receive any code?".tr,
                       style: TextStyle(
                           fontFamily: 'Arimo', fontWeight: FontWeight.w900)),
                   GestureDetector(
@@ -395,7 +399,7 @@ class _SignupOTPState extends State<SignupOTP> {
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) => Login()));
                     },
-                    child: Text(" Resend again",
+                    child: Text(" Resend again".tr,
                         style: TextStyle(
                             color: Color.fromRGBO(255, 51, 51, 1.0),
                             fontFamily: 'Arimo',
@@ -408,7 +412,7 @@ class _SignupOTPState extends State<SignupOTP> {
                 height: 5,
               ),
               Text(
-                'Request new code in 00:${_start}s',
+                'Request new code in 00:${_start}s'.tr,
                 style: TextStyle(fontFamily: 'Arimo', color: Colors.grey),
               )
             ],

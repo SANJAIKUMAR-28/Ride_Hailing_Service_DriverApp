@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -34,6 +35,7 @@ class _DriverDetailsState extends State<DriverDetails> {
   String lastname = '';
   String country='';
   TextEditingController controller = TextEditingController();
+  CollectionReference ref = FirebaseFirestore.instance.collection("users");
   String extractedText = '';
   @override
   void initState() {
@@ -107,6 +109,11 @@ class _DriverDetailsState extends State<DriverDetails> {
         padding: EdgeInsets.fromLTRB(20, 15, 20, 15),
         minWidth: MediaQuery.of(context).size.width,
         onPressed: () async {
+          ref.doc(widget.uid).update({
+            'License-Number':license,
+            'Date-of-birth':dob,
+            'Expiration-date':expiry,
+          });
           Navigator.push(context, MaterialPageRoute(builder: (context)=> VehicleDetails(uid: widget.uid, name: widget.name,)));
         },
         child: Text(

@@ -52,6 +52,7 @@ dependencies:
   google_mlkit_text_recognition: ^0.10.0
   image_cropper: ^4.0.1
   get: ^4.6.5
+  auto_size_text: ^3.0.0
   lottie: ^2.6.0
   csv: ^5.0.2
 

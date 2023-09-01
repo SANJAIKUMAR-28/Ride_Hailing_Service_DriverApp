@@ -215,13 +215,6 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: (){
-      //     var locale = Locale('ta','IN');
-      //     Get.updateLocale(locale);
-      //   },
-      //   child: Text('LAN'),
-      // ),
     );
   }
   Material requestList(String name,String num,String from,String to,String vehicle,String cost,String dist,String sts,String psgsts,String key){
@@ -366,15 +359,15 @@ class _HomePageState extends State<HomePage> {
     String greeting ='';
     DateTime dateTime=DateTime.now();
     String hour= "${dateTime.hour}";
-    if(int.parse(hour)>0&&int.parse(hour)<=11){
+    if(int.parse(hour)>=0&&int.parse(hour)<=11){
       greeting="Good Morning";
     }else if(int.parse(hour)>=12&&int.parse(hour)<16){
       greeting="Good Afternoon";
     }
     else if(int.parse(hour)>=16&&int.parse(hour)<=19){
       greeting="Good Evening";
-    }else if(int.parse(hour)>=19&&int.parse(hour)<00){
-      greeting="Good Evening";
+    }else if(int.parse(hour)>=19&&int.parse(hour)<=23){
+      greeting="Good Night";
     }
     return greeting;
   }

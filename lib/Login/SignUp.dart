@@ -3,6 +3,7 @@ import 'package:email_otp/email_otp.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:get/get.dart';
 
 import '../Model/user_model.dart';
 import 'LogIn.dart';
@@ -51,7 +52,7 @@ class _SignupState extends State<Signup> {
               suffixIcon:
               Icon(Icons.person_outline_rounded, color: Colors.grey),
               contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
-              hintText: "Full Name",
+              hintText: "Full Name".tr,
               hintStyle: TextStyle(fontFamily: 'Arimo'),
               border: InputBorder.none),
         ));
@@ -82,7 +83,7 @@ class _SignupState extends State<Signup> {
                 color: Colors.grey,
               ),
               contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
-              hintText: "Valid Email",
+              hintText: "Valid Email".tr,
               hintStyle: TextStyle(fontFamily: 'Arimo'),
               border: InputBorder.none),
         ));
@@ -113,7 +114,7 @@ class _SignupState extends State<Signup> {
                 color: Colors.grey,
               ),
               contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
-              hintText: "Phone Number",
+              hintText: "Phone Number".tr,
               hintStyle: TextStyle(fontFamily: 'Arimo'),
               border: InputBorder.none),
         ));
@@ -142,7 +143,7 @@ class _SignupState extends State<Signup> {
           decoration: InputDecoration(
               suffixIcon: Icon(Icons.lock_outline_rounded, color: Colors.grey),
               contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
-              hintText: "Password",
+              hintText: "Password".tr,
               hintStyle: TextStyle(fontFamily: 'Arimo'),
               // suffixIcon: InkWell(
               //   onTap: _toggleview,
@@ -191,7 +192,7 @@ class _SignupState extends State<Signup> {
           }
         },
         child: Text(
-          "Register >",
+          "Register >".tr,
           textAlign: TextAlign.center,
           style: TextStyle(
               fontSize: 17,
@@ -242,7 +243,7 @@ class _SignupState extends State<Signup> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      Text("Already a member?",
+                      Text("Already a member?".tr,
                           style: TextStyle(
                               fontFamily: 'Arimo',
                               fontWeight: FontWeight.w900)),
@@ -251,7 +252,7 @@ class _SignupState extends State<Signup> {
                           Navigator.push(context,
                               MaterialPageRoute(builder: (context) => Login()));
                         },
-                        child: Text(" Log In",
+                        child: Text(" Log In".tr,
                             style: TextStyle(
                                 color: Color.fromRGBO(255, 51, 51, 1.0),
                                 fontFamily: 'Arimo',

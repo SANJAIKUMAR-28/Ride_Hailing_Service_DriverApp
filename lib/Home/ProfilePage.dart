@@ -17,12 +17,12 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   User? user=FirebaseAuth.instance.currentUser;
   UserModel loggedInUser=UserModel();
-  final CollectionReference ref = FirebaseFirestore.instance.collection("users");
+  final CollectionReference ref = FirebaseFirestore.instance.collection("drivers");
   @override
   void initState() {
     super.initState();
     FirebaseFirestore.instance
-        .collection("users")
+        .collection("drivers")
         .doc(user!.uid)
         .get()
         .then((value) {
@@ -117,9 +117,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                 size: 30,
                               ),
                               onTap: () {
-                                ref.doc(user!.uid).update({
-                                  'phoneno':"7373994102",
-                                });
+
                               },
 
                             )
@@ -232,7 +230,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                         backgroundColor:
                                         Color.fromRGBO(255, 51, 51, 0.03),
                                         child: Icon(
-                                          Icons.location_on_outlined,
+                                          LineIcons.language,
                                           color:
                                           Color.fromRGBO(255, 51, 51, 0.8),
                                           size: 25,
@@ -248,7 +246,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                         CrossAxisAlignment.start,
                                         children: [
                                           Text(
-                                            'Address',
+                                            'Language',
                                             style: TextStyle(
                                                 fontWeight: FontWeight.w900,
                                                 fontFamily: 'Arimo',
@@ -258,7 +256,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                           SizedBox(
                                             height: 3,
                                           ),
-                                          Text('Add your address',
+                                          Text('Choose preffered language',
                                               style: TextStyle(
                                                   fontFamily: 'Arimo',
                                                   color: Color.fromRGBO(
