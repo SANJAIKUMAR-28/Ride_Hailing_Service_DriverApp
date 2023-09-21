@@ -27,8 +27,10 @@ class _VehicleDetailsState extends State<VehicleDetails> {
   final CollectionReference ref = FirebaseFirestore.instance.collection("drivers");
   List<String> dropdownMakes = [];
   List<String> dropdownModels = [];
+  var type=['Bike','Auto','Sedan','SUV'];
   String selectedMake = 'Make';
   String selectedModel = 'Model';
+  String selectedType='Type';
   String vehicleNumber="Vehicle Number";
   final vehicleController=new TextEditingController();
   @override
@@ -109,6 +111,36 @@ class _VehicleDetailsState extends State<VehicleDetails> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
+                    Text('Vehicle Type',style: TextStyle(fontFamily: 'Arimo',fontWeight: FontWeight.w400),),
+                    DropdownButton<String>(
+                      value: selectedType,
+                      alignment: AlignmentDirectional.centerEnd,
+                      icon: SizedBox.shrink(),
+                      underline: Container(),
+                      onChanged: (newValue) {
+                        setState(() {
+                          selectedType = newValue!;
+                        });
+                      },
+                      items: type.map((make) {
+                        return DropdownMenuItem<String>(
+                          value: make,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Text(make,style: TextStyle(fontFamily: 'Arimo',color: Colors.grey),),
+                            ],
+                          ),
+                        );
+                      }).toList(),
+                    ),
+                  ],
+                ),
+              ),
+              Material(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
                     Text('Vehicle Make',style: TextStyle(fontFamily: 'Arimo',fontWeight: FontWeight.w400),),
                     DropdownButton<String>(
                       value: selectedMake,
@@ -141,7 +173,7 @@ class _VehicleDetailsState extends State<VehicleDetails> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text('Vehicle Type',style: TextStyle(fontFamily: 'Arimo',fontWeight: FontWeight.w400),),
+                    Text('Vehicle Model',style: TextStyle(fontFamily: 'Arimo',fontWeight: FontWeight.w400),),
                     DropdownButton<String>(
                       value: selectedModel,
                       icon: SizedBox.shrink(),

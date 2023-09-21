@@ -35,7 +35,7 @@ class _DriverDetailsState extends State<DriverDetails> {
   String lastname = '';
   String country='';
   TextEditingController controller = TextEditingController();
-  CollectionReference ref = FirebaseFirestore.instance.collection("users");
+  CollectionReference ref = FirebaseFirestore.instance.collection("drivers");
   String extractedText = '';
   @override
   void initState() {

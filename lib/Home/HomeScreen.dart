@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:velocitodriver/Home/ProfilePage.dart';
+import 'package:velocitodriver/Home/RouteLink.dart';
 import 'package:velocitodriver/Home/homepage.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -17,7 +18,7 @@ static const TextStyle _style =
 TextStyle(fontFamily: 'Arimo', fontSize: 11, fontWeight: FontWeight.bold);
 static const List<Widget> _widgetOptions = <Widget>[
 HomePage(),
-  HomePage(),
+  RouteLink(),
   ProfilePage(),
 
 ];
@@ -43,8 +44,8 @@ Widget build(BuildContext context) {
                     textStyle: _style,
                   ),
                   GButton(
-                    icon: LineIcons.heart,
-                    text: 'Favourites',
+                    icon: LineIcons.alternateMapMarked,
+                    text: 'RouteLink',
                     textStyle: _style,
                   ),
                   GButton(

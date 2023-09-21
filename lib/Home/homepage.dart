@@ -10,6 +10,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:lottie/lottie.dart';
+import 'package:velocitodriver/Screens/OnTheWay.dart';
 import 'package:velocitodriver/Screens/PickUp.dart';
 
 import '../Model/user_model.dart';
@@ -27,6 +28,8 @@ class _HomePageState extends State<HomePage> {
   String vehicletype='';
   String vehiclemake='';
   String vehiclenum='';
+  bool transit=true;
+  bool completed=false;
   String name = '';
   db.Query dbRef = db.FirebaseDatabase.instance.ref().child('Requests');
   db.DatabaseReference reference = db.FirebaseDatabase.instance.ref().child('Requests');
@@ -60,7 +63,7 @@ class _HomePageState extends State<HomePage> {
             if(request['STATUS']=="REQUESTED")
               requestList(request['PASSENGER-NAME'], request['PASSENGER-NUMBER'], request['FROM'], request['TO'], request['VEHICLE'], request['COST'],request['DISTANCE'], request['STATUS'],request['PASSENGER-STATUS'],request['key']),
             if(request['PASSENGER-STATUS']=="CONFIRMED")
-              checksts(),
+              checksts(request['PASSENGER-ID']),
 
           ],
         ),
@@ -171,6 +174,68 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                 ),
+              ],
+            ),
+            Stack(
+              children: [
+                SizedBox(
+                  height: 50,
+                  width: MediaQuery.of(context).size.width,
+                  child: Material(
+                    color: Color.fromRGBO(255, 245, 245, 1.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                          color: Colors.transparent,
+                          width: (MediaQuery.of(context).size.width)/2,
+                          child: Material(
+                            color: Color.fromRGBO(255, 245, 245, 1.0),
+                            child: MaterialButton(
+                                splashColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
+                                onPressed: () {
+                                  setState(() {
+                                    transit=!transit;
+                                    completed=!completed;
+                                  });
+                                },
+                                child: Text('In-transit',textAlign: TextAlign.center,style: TextStyle(fontFamily: 'Arimo',color: (transit)?Colors.redAccent:Colors.black),)),
+                          ),
+                        ),
+                        Container(
+                          color: Colors.transparent,
+                          width: (MediaQuery.of(context).size.width)/2,
+                          child: Material(
+                            color: Color.fromRGBO(255, 245, 245, 1.0),
+                            child: MaterialButton(
+                                splashColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
+                                onPressed: () {
+                                  setState(() {
+                                    completed=!completed;
+                                    transit=!transit;
+                                  });
+                                },
+                                child: Text('Completed',textAlign: TextAlign.center,style: TextStyle(fontFamily: 'Arimo',color: (completed)?Colors.redAccent:Colors.black),)),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Positioned(
+                    bottom: 0,
+                    left: 0,
+                    right: 0,
+                    child: Container(
+                      height: 5,
+                      child: Divider(
+                        endIndent: (completed)?0:MediaQuery.of(context).size.width/2,
+                        indent: (transit)?0:MediaQuery.of(context).size.width/2,
+                        color: Colors.redAccent,
+                      ),
+                    ))
               ],
             ),
             (_isEnabled)?
@@ -317,6 +382,7 @@ class _HomePageState extends State<HomePage> {
                           reference.child(key).update({'VEHICLE-MAKE':vehiclemake});
                           reference.child(key).update({'VEHICLE-NUMBER':vehiclenum});
                           showModalBottomSheet(context: context, builder: (context){
+
                             return Container(
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.only(topLeft: Radius.circular(20),topRight: Radius.circular(20)),
@@ -350,10 +416,10 @@ class _HomePageState extends State<HomePage> {
         ),
     );
   }
-  checksts(){
+  checksts(String key){
         Navigator.push(context,
             MaterialPageRoute(
-                builder: (context) => PickUp()));
+                builder: (context) => OnTheWay(keyvalue: key,)));
   }
   String greetings(){
     String greeting ='';

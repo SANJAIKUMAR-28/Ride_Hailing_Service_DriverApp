@@ -1,8 +1,11 @@
 buildscript {
-    ext.kotlin_version = '1.7.10'
+    ext.kotlin_version = '1.8.0'
     repositories {
         google()
         mavenCentral()
+        maven {
+            url "https://maven.google.com"
+        }
     }
 
     dependencies {
